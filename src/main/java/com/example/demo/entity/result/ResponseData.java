@@ -1,40 +1,60 @@
 package com.example.demo.entity.result;
 
-public class ResponseData extends Response {
-	private Object data;
+import java.util.HashMap;
+import java.util.Map;
 
-	public ResponseData(Object data) {
-		this.data = data;
-	}
+public class ResponseData {
+    private final int code;
+    private final String message;
+    private final Map<String, Object> data = new HashMap<String, Object>();
 
-	public ResponseData(ExceptionMsg msg) {
-		super(msg);
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public ResponseData(String rspCode, String rspMsg) {
-		super(rspCode, rspMsg);
-	}
+    public int getCode() {
+        return code;
+    }
 
-	public ResponseData(String rspCode, String rspMsg, Object data) {
-		super(rspCode, rspMsg);
-		this.data = data;
-	}
+    public Map<String, Object> getData() {
+        return data;
+    }
 
-	public ResponseData(ExceptionMsg msg, Object data) {
-		super(msg);
-		this.data = data;
-	}
+    public ResponseData setDataValue(String key, Object value) {
+        data.put(key, value);
+        return this;
+    }
 
-	public Object getData() {
-		return data;
-	}
+    private ResponseData(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
 
-	public void setData(Object data) {
-		this.data = data;
-	}
+    public static ResponseData ok() {
+        return new ResponseData(200, "Ok");
+    }
 
-	@Override
-	public String toString() {
-		return "ResponseData{" + "data=" + data + "} " + super.toString();
-	}
+    public static ResponseData notFound() {
+        return new ResponseData(404, "Not Found");
+    }
+
+    public static ResponseData badRequest() {
+        return new ResponseData(400, "Bad Request");
+    }
+
+    public static ResponseData forbidden() {
+        return new ResponseData(403, "Forbidden");
+    }
+
+    public static ResponseData unauthorized() {
+        return new ResponseData(401, "unauthorized");
+    }
+
+    public static ResponseData serverInternalError() {
+        return new ResponseData(500, "Server Internal Error");
+    }
+
+    public static ResponseData customerError() {
+        return new ResponseData(1001, "customer Error");
+    }
 }

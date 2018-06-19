@@ -10,11 +10,11 @@ import com.example.demo.service.KidService;
 @Service
 public class KidServiceImpl implements KidService {
 
-	@Autowired
-	KidRepository kidRepository;
+    @Autowired
+    KidRepository kidRepository;
 
-	@Override
-	public void save(Kid kid) {
-		kidRepository.save(kid);
-	}
+    @Override
+    public Kid save(Kid kid) {
+        return kidRepository.save(kid);
+    }
 }

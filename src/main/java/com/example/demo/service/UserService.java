@@ -12,9 +12,11 @@ public interface UserService {
 	
 	User findByPhone(String phone);
 
-	void save(User user);
+	User save(User user);
 
 	void edit(User user);
 
 	void delete(long id);
+	
+	boolean doesUserExist(String phone);
 }

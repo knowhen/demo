@@ -4,5 +4,5 @@ import com.example.demo.entity.Kid;
 
 public interface KidService {
 
-	void save(Kid kid);
+	Kid save(Kid kid);
 }
