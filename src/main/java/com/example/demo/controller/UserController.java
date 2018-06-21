@@ -40,13 +40,12 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseData createUser(@RequestBody User user) {
-        ResponseData responseData;
         if (userService.doesUserExist(user.getPhone())) {
-            return ResponseData.badRequest();
+            return ResponseData.badRequest().setDataValue("error", "User exist");
         }
+        
         User savedUser = userService.save(user);
-        responseData = ResponseData.ok();
-        return responseData.setDataValue("user", savedUser);
+        return ResponseData.ok().setDataValue("user", savedUser);
     }
 
     /**
